@@ -1,0 +1,49 @@
+{
+  "id": "ai.parallel.search",
+  "name": "Parallel Search",
+  "version": "1.0.0",
+  "type": "extension",
+  "description": "Ground Asyar's AI agent in live web results from the Parallel Search API, with LLM ready excerpts and citations.",
+  "author": "Parallel Web Systems",
+  "icon": "🔎",
+  "category": "ai",
+  "asyarSdk": "^4.16.0",
+  "permissions": ["network", "ai:web-search", "shell:open-url"],
+  "preferences": [
+    {
+      "name": "mode",
+      "type": "dropdown",
+      "title": "Search mode",
+      "description": "Latency and quality preset sent to the Parallel Search API.",
+      "default": "fast",
+      "data": [
+        { "value": "turbo", "title": "Turbo (lowest latency)" },
+        { "value": "fast", "title": "Fast (recommended)" },
+        { "value": "basic", "title": "Basic" },
+        { "value": "advanced", "title": "Advanced (highest quality)" }
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "id": "get-api-key",
+      "name": "Get Parallel API Key",
+      "description": "Open the Parallel platform to create the API key used by web search.",
+      "mode": "background"
+    }
+  ],
+  "background": {
+    "main": "dist/worker.js"
+  },
+  "webSearchEngines": [
+    {
+      "id": "parallel",
+      "name": "Parallel",
+      "description": "Web search built for AI agents: one call returns ranked pages with long, relevant excerpts.",
+      "homepage": "https://parallel.ai",
+      "requiresApiKey": true,
+      "apiKeyPlaceholder": "Your Parallel API key",
+      "apiKeyHelpUrl": "https://platform.parallel.ai"
+    }
+  ]
+}
